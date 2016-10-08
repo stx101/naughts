@@ -1,0 +1,27 @@
+.top,
+.middle {
+    border-bottom: solid 1px black;
+}
+
+.bottom,
+.middle {
+    border-top: solid 1px black;
+}
+
+.left,
+.center {
+    border-right: solid 1px black;
+}
+
+.right,
+.center {
+    border-left: solid 1px black;
+}
+
+.column {
+    width: 33%;
+    height: 0;
+    padding-bottom: 33%;
+    margin: 0px;
+    text-align: center;
+}

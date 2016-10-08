@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <app-cell [state]="cell[0][0]" (click)="cellClicked(0, 0)" class="one-third column top left"></app-cell>
+    <app-cell [state]="cell[0][1]" (click)="cellClicked(0, 1)" class="one-third column top center"></app-cell>
+    <app-cell [state]="cell[0][2]" (click)="cellClicked(0, 2)" class="one-third column top right"></app-cell>
+  </div>
+  <div class="row">
+    <app-cell [state]="cell[1][0]" (click)="cellClicked(1, 0)" class="one-third column middle left"></app-cell>
+    <app-cell [state]="cell[1][1]" (click)="cellClicked(1, 1)" class="one-third column middle center"></app-cell>
+    <app-cell [state]="cell[1][2]" (click)="cellClicked(1, 2)" class="one-third column middle right"></app-cell>
+  </div>
+  <div class="row">
+    <app-cell [state]="cell[2][0]" (click)="cellClicked(2, 0)" class="one-third column bottom left"></app-cell>
+    <app-cell [state]="cell[2][1]" (click)="cellClicked(2, 1)" class="one-third column bottom center"></app-cell>
+    <app-cell [state]="cell[2][2]" (click)="cellClicked(2, 2)" class="one-third column bottom right"></app-cell>
+  </div>
+</div>
