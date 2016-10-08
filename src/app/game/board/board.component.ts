@@ -11,7 +11,7 @@ export class BoardComponent implements OnInit {
   @Input() gameModel: GameModel;
 
   constructor() {
-    this.gameModel = new GameModel();
+    this.gameModel = new GameModel(3, 3);
   }
 
   ngOnInit() {

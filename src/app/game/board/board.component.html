@@ -1,6 +1,9 @@
 <div class="container">
-  <div class="row" *ngFor="let row of gameModel.cell; let y = index">
-    <app-cell *ngFor="let cell of row; let x = index" [state]="row[x]" (click)="cellClicked(x, y)" class="one-third column top left">
+  <div class="row" *ngFor="let row of gameModel.cell; let y = index, let lastY = last">
+  <app-cell *ngFor="let cell of row; let x = index, let lastX = last" 
+  [state]="row[x]" (click)="cellClicked(x, y)" 
+  [ngClass]="{'one-third': true, 'column': true, 
+  'has-left': x !== 0, 'has-right': !lastX, 'has-top': y !== 0, 'has-bottom': !lastY }">
     </app-cell>
   </div>
 </div>

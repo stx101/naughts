@@ -1,23 +1,20 @@
-.top,
-.middle {
+.has-bottom {
     border-bottom: solid 1px black;
 }
 
-.bottom,
-.middle {
+.has-top {
     border-top: solid 1px black;
 }
 
-.left,
-.center {
+.has-right {
     border-right: solid 1px black;
 }
 
-.right,
-.center {
+.has-left {
     border-left: solid 1px black;
 }
 
+/* TODO: Make the width and height (padding) dependant on the number of rows and columns */
 .column {
     width: 33%;
     height: 0;
