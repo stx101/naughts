@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Model } from '../model';
+import { GameModel } from '../game.model';
 
 @Component({
   selector: 'app-board',
@@ -8,13 +8,17 @@ import { Model } from '../model';
 })
 export class BoardComponent implements OnInit {
 
-  @Input() model: Model;
+  @Input() gameModel: GameModel;
 
   constructor() {
-    this.model = new Model();
+    this.gameModel = new GameModel();
   }
 
   ngOnInit() {
-    this.model.start();
+    this.gameModel.start();
+  }
+
+  cellClicked(x: number, y: number) {
+    this.gameModel.playCell(x, y);
   }
 }

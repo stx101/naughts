@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { State } from '../state.enum';
+import { CellState } from '../cell-state.enum';
 
 @Component({
   selector: 'app-cell',
@@ -9,10 +9,9 @@ import { State } from '../state.enum';
 })
 export class CellComponent implements OnInit {
 
-  public State = State;
+  public CellState = CellState;
 
-  @Input()
-  state: State;
+  @Input() state: CellState;
 
   @Output()
   cellClicked: EventEmitter<any> = new EventEmitter();
