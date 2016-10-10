@@ -1,1 +1,8 @@
-<i [ngClass]="{'fa': true, 'fa-close': state===CellState.Cross, 'fa-circle-o': state===CellState.Naught}" (click)="onClicked($event)"></i>
+<div class="content">
+    <div class="table">
+        <div class="table-cell">
+<!--            <i [ngClass]="{'fa': true, 'fa-close': state===CellState.Cross, 'fa-circle-o': state===CellState.Naught}" (click)="onClicked($event)"></i> -->
+            <div [ngClass]="{'cross': state===CellState.Cross, 'naught': state===CellState.Naught}" (click)="onClicked($event)"></div>
+        </div>
+    </div>
+</div>
