@@ -5,7 +5,6 @@ import { GameModel } from './game.model';
 
 describe('Model', () => {
   it('should create an instance', () => {
-    expect(true).toBeFalsy();
     expect(new GameModel(3, 3)).toBeTruthy();
   });
 });
