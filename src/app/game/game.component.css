@@ -1,0 +1,13 @@
+h1 {
+    font-family: Raleway;
+	font-size: 8.8vw;
+	font-style: normal;
+	font-variant: normal;
+    margin: 1.5vw 0 0;
+    text-align: center;
+}
+
+button {
+    font-size: 6.6vw;
+    margin: 1.5vw 0;
+}

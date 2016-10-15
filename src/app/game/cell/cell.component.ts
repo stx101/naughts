@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 
 import { CellState } from '../cell-state.enum';
 
@@ -7,7 +7,7 @@ import { CellState } from '../cell-state.enum';
   templateUrl: './cell.component.html',
   styleUrls: ['./cell.component.css']
 })
-export class CellComponent implements OnInit {
+export class CellComponent implements OnInit, OnChanges {
 
   public CellState = CellState;
 
@@ -19,6 +19,17 @@ export class CellComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for (let propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        let changedProp = changes[propName];
+        let previousValue = changedProp.previousValue;
+        let currentValue = changedProp.currentValue;
+        console.log('changed ' + previousValue + ' to '  + currentValue);
+      }
+    }
   }
 
   onClicked(event) {

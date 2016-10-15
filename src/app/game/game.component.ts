@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { GameModel } from './game.model';
+import { CellState } from './cell-state.enum';
 
 @Component({
   selector: 'app-game',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  public CellState = CellState;
+
+  @Output() gameModel: GameModel;
+
+  constructor() {
+    this.gameModel = new GameModel(3);
+  }
 
   ngOnInit() {
+    this.gameModel.start();
   }
 
 }

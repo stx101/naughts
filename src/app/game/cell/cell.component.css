@@ -1,5 +1,3 @@
-/* The cell */
-
 :host {
     float: left;
     position: relative;
@@ -17,29 +15,12 @@
     text-align: center;
 }
 
-.table {
-    display: table;
-    height: 100%;
-    width: 100%;
-}
-
-.table-cell {
-    display: table-cell;
-    vertical-align: middle;
-    height: 100%;
-    width: 100%;
-}
-
-
-/* Naught and cross */
-
 .naught {
-    height: 100%;
-    background: green;
-    background: radial-gradient(transparent 62%, green 62.5%, green 69.5%, transparent 70%);
+    fill: transparent; 
+    stroke: #8600B2; 
+    stroke-width: 12.5;
 }
 
 .cross {
-    height: 100%;
-    background: linear-gradient(to top left, transparent 48%, red 48.3%, red 51.7%, transparent 52%), linear-gradient(to top right, transparent 48%, red 48.3%, red 51.7%, transparent 52%);
+    fill: #0086B2;
 }

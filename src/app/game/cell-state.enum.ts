@@ -1,5 +1,5 @@
 export enum CellState {
-    Free,
+    Neither,
     Naught,
     Cross
 }
