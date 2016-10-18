@@ -26,12 +26,13 @@ export class GameModel {
             }
         }
 
-        this.winner = null;
+        this.winner = undefined;
         this.currentPlayer = CellState.Naught;
     }
 
     playCell(x: number, y: number) {
-        if (this.winner === CellState.Naught || this.winner === CellState.Cross) {
+        // The game is over, so no more moves are allowed
+        if (this.winner !== undefined) {
             return;
         }
 
@@ -43,7 +44,7 @@ export class GameModel {
         this.moveCount++;
 
         this.winner = this.checkGameOver(x, y, this.currentPlayer);
-        if (this.winner === null) {
+        if (this.winner === undefined) {
             this.changePlayer();
         }
     }
@@ -51,6 +52,7 @@ export class GameModel {
     checkGameOver(x: number, y: number, s: CellState): CellState {
         // check col
         for (let i = 0; i < this.dimension; i++) {
+            console.log('col ' + x + ',' + i + ' = ' + this.cell[i][x]);
             if (this.cell[i][x] !== s) {
                 break;
             }
@@ -62,10 +64,12 @@ export class GameModel {
 
         // check row
         for (let i = 0; i < this.dimension; i++) {
+            console.log('row ' + y + ',' + i + ' = ' + this.cell[y][i]);
             if (this.cell[y][i] !== s) {
                 break;
             }
             if (i === this.dimension - 1) {
+                console.log('row ' + i);
                 // report win for s
                 return s;
             }
@@ -75,22 +79,26 @@ export class GameModel {
         if (x === y) {
             // we're on a diagonal
             for (let i = 0; i < this.dimension; i++) {
+                console.log('diag ' + i + ',' + i + ' = ' + this.cell[i][i]);
                 if (this.cell[i][i] !== s) {
                     break;
                 }
                 if (i === this.dimension - 1) {
                     // report win for s
+                    console.log('diag ' + i);
                     return s;
                 }
             }
         } else if (x + y === this.dimension - 1) {
             // check anti diag (thanks rampion)
             for (let i = 0; i < this.dimension; i++) {
+                console.log('anti ' + ((this.dimension - 1) - i) + ',' + i + ' = ' + this.cell[(this.dimension - 1) - i][i]);
                 if (this.cell[(this.dimension - 1) - i][i] !== s) {
                     break;
                 }
                 if (i === this.dimension - 1) {
                     // report win for s
+                    console.log('anti-diag ' + i);
                     return s;
                 }
             }
@@ -102,10 +110,11 @@ export class GameModel {
             return CellState.Neither;
         }
 
-        return null;
+        return undefined;
     }
 
     changePlayer() {
         this.currentPlayer = this.currentPlayer === CellState.Naught ? CellState.Cross : CellState.Naught;
+        console.log('player is now ' + this.currentPlayer);
     }
 }
