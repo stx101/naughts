@@ -24,7 +24,7 @@ describe('Model', () => {
       model.cell.forEach((row) => {
         count += row.length;
       });
-      expect(count).toEqual(dimension * dimension);
+      expect(count).toEqual(dimension ** 2);
     });
 
     it('should initialize all cells', () => {
@@ -70,19 +70,34 @@ describe('Model', () => {
       expect(model.winner).toBe(CellState.Cross);
     });
 
-    it('should be a draw', () => {
-      // xox
-      // xox
-      // oxo
-      model.playCell(0, 0); // x
-      model.playCell(1, 0); // o
-      model.playCell(2, 0); // x
-      model.playCell(1, 1); // o
-      model.playCell(0, 1); // x
-      model.playCell(0, 2); // o
-      model.playCell(1, 2); // x
-      model.playCell(2, 2); // o
-      model.playCell(2, 1); // x
+    it('should be a win to naughts if diagonal filled', () => {
+      model.playCell(0, 0);
+      model.playCell(0, 1);
+      model.playCell(1, 1);
+      model.playCell(0, 2);
+      model.playCell(2, 2);
+      expect(model.winner).toBe(CellState.Naught);
+    });
+
+    it('should be a win to naughts if anti-diagonal filled', () => {
+      model.playCell(2, 0);
+      model.playCell(0, 1);
+      model.playCell(1, 1);
+      model.playCell(1, 2);
+      model.playCell(0, 2);
+      expect(model.winner).toBe(CellState.Naught);
+    });
+
+    it('should be a draw when all cells played and no winner', () => {
+      model.playCell(0, 0);
+      model.playCell(1, 0);
+      model.playCell(2, 0);
+      model.playCell(1, 1);
+      model.playCell(0, 1);
+      model.playCell(0, 2);
+      model.playCell(1, 2);
+      model.playCell(2, 2);
+      model.playCell(2, 1);
       expect(model.winner).toBe(CellState.Neither);
     });
 

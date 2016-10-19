@@ -1,14 +1,11 @@
 import { CellState } from './cell-state.enum';
-import { EventEmitter } from '@angular/core';
 
 export class GameModel {
     cell: CellState[][];
-    moveCount: 0;
+    moveCount: number;
     dimension: number;
     currentPlayer: CellState;
     winner: CellState;
-
-    gameOver: EventEmitter<Array<[number, number]>> = new EventEmitter<Array<[number, number]>>();
 
     constructor(dimension: number) {
         this.dimension = dimension;
@@ -28,6 +25,7 @@ export class GameModel {
 
         this.winner = undefined;
         this.currentPlayer = CellState.Naught;
+        this.moveCount = 0;
     }
 
     playCell(x: number, y: number) {
@@ -52,7 +50,6 @@ export class GameModel {
     checkGameOver(x: number, y: number, s: CellState): CellState {
         // check col
         for (let i = 0; i < this.dimension; i++) {
-            console.log('col ' + x + ',' + i + ' = ' + this.cell[i][x]);
             if (this.cell[i][x] !== s) {
                 break;
             }
@@ -64,12 +61,10 @@ export class GameModel {
 
         // check row
         for (let i = 0; i < this.dimension; i++) {
-            console.log('row ' + y + ',' + i + ' = ' + this.cell[y][i]);
             if (this.cell[y][i] !== s) {
                 break;
             }
             if (i === this.dimension - 1) {
-                console.log('row ' + i);
                 // report win for s
                 return s;
             }
@@ -79,33 +74,29 @@ export class GameModel {
         if (x === y) {
             // we're on a diagonal
             for (let i = 0; i < this.dimension; i++) {
-                console.log('diag ' + i + ',' + i + ' = ' + this.cell[i][i]);
                 if (this.cell[i][i] !== s) {
                     break;
                 }
                 if (i === this.dimension - 1) {
                     // report win for s
-                    console.log('diag ' + i);
                     return s;
                 }
             }
         } else if (x + y === this.dimension - 1) {
             // check anti diag (thanks rampion)
             for (let i = 0; i < this.dimension; i++) {
-                console.log('anti ' + ((this.dimension - 1) - i) + ',' + i + ' = ' + this.cell[(this.dimension - 1) - i][i]);
                 if (this.cell[(this.dimension - 1) - i][i] !== s) {
                     break;
                 }
                 if (i === this.dimension - 1) {
                     // report win for s
-                    console.log('anti-diag ' + i);
                     return s;
                 }
             }
         }
 
         // check draw
-        if (this.moveCount === (this.dimension ^ 2)) {
+        if (this.moveCount === this.dimension ** 2) {
             // report draw
             return CellState.Neither;
         }
@@ -115,6 +106,5 @@ export class GameModel {
 
     changePlayer() {
         this.currentPlayer = this.currentPlayer === CellState.Naught ? CellState.Cross : CellState.Naught;
-        console.log('player is now ' + this.currentPlayer);
     }
 }

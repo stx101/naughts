@@ -1,11 +1,11 @@
 <h1>Naughts and Crosses</h1>
-<div *ngIf="gameModel.winner">
+<div *ngIf="gameModel.winner !== undefined">
     <p *ngIf="gameModel.winner === CellState.Naught">Naughts wins!</p>
     <p *ngIf="gameModel.winner === CellState.Cross">Crosses wins!</p>
     <p *ngIf="gameModel.winner === CellState.Neither">It's a draw!</p>
     <button (click)="gameModel.start()">New Game</button>
 </div>
-<div *ngIf="!gameModel.winner">
+<div *ngIf="gameModel.winner === undefined">
     <p>{{gameModel.currentPlayer}}'s turn</p>
 </div>
 <app-board [gameModel]="gameModel"></app-board>
